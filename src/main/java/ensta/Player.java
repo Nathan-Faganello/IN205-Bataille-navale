@@ -80,7 +80,7 @@ public class Player {
         } while (!done);
     }
 
-/*
+
     public Hit sendHit(int[] coords) {
         boolean done;
         Hit hit = null;
@@ -90,12 +90,21 @@ public class Player {
             InputHelper.CoordInput hitInput = InputHelper.readCoordInput();
             // TODO call sendHit on this.opponentBoard
 
+            hit = opponentBoard.sendHit(hitInput.x, hitInput.y);
+
             // TODO : Game expects sendHit to return BOTH hit result & hit coords.
             // return hit is obvious. But how to return coords at the same time ?
+            // Quand on veut return 2 éléments simultanément, on peut utiliser une des variables d'entrée pour stocker ce qu'on veut récupérer. C'est pourquoi, on va stocker les coordonées retournées dans coords
+            coords[0]=hitInput.x;
+            coords[1]=hitInput.y;
+
+            done = true;
         } while (!done);
 
         return hit;
     }
+
+    /*
 
     public AbstractShip[] getShips() {
         return ships;

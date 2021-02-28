@@ -5,8 +5,8 @@ import ensta.ships.*;
 public class Board implements IBoard {
 
 	protected String nom;
-	protected char tableauNavires[][];
-	protected boolean tableauFrappes[][];
+	protected ShipState tableauNavires[][];
+	protected Boolean tableauFrappes[][];
 
 	/* constructeur valué 
 	* @param nom = nom de la grille
@@ -16,12 +16,12 @@ public class Board implements IBoard {
 
 	public Board(String nom, int taille) {
 		this.nom=nom;
-		this.tableauNavires=new char[taille][taille];
-		this.tableauFrappes=new boolean[taille][taille];
+		this.tableauNavires=new ShipState[taille][taille];
+		this.tableauFrappes=new Boolean[taille][taille];
 		for (int i=0; i<taille; i++) {
 			for (int j=0; j<taille;j++) {
-				this.tableauFrappes[i][j]= false;
-				this.tableauNavires[i][j]='.';
+				this.tableauFrappes[i][j]= null;
+				this.tableauNavires[i][j]= new ShipState();
 			}
 		}
 	}
@@ -33,12 +33,12 @@ public class Board implements IBoard {
 	*/
 	public Board(String nom) {
 		this.nom=nom;
-		this.tableauNavires=new char[10][10];
-		this.tableauFrappes=new boolean[10][10];
+		this.tableauNavires=new ShipState[10][10];
+		this.tableauFrappes=new Boolean[10][10];
 		for (int i=0; i<10; i++) {
 			for (int j=0; j<10;j++) {
-				this.tableauFrappes[i][j]= false;
-				this.tableauNavires[i][j]= '.';
+				this.tableauFrappes[i][j]= null;
+				this.tableauNavires[i][j]= new ShipState();
 			}
 		}
 	}
@@ -88,7 +88,7 @@ public class Board implements IBoard {
 				System.out.print(" ");
 			}
 			for(int j=0; j<taille; j++){
-				System.out.print(tableauNavires[i][j]);
+				System.out.print(tableauNavires[i][j].toString());
 				System.out.print(" ");
 			}
 			System.out.print("    ");
@@ -97,11 +97,14 @@ public class Board implements IBoard {
 				System.out.print(" ");
 			}
 			for(int j=0; j<taille; j++){
-				if (tableauFrappes[i][j] == true) {
-					System.out.print("X ");
+				if (tableauFrappes[i][j] == null) {
+					System.out.print(ColorUtil.colorize(". ", ColorUtil.Color.WHITE));
+				}
+				else if (tableauFrappes[i][j] == false){
+					System.out.print(ColorUtil.colorize("X ", ColorUtil.Color.WHITE));
 				}
 				else {
-					System.out.print(". ");
+					System.out.print(ColorUtil.colorize("X ", ColorUtil.Color.RED));
 				}
 			}
 			System.out.print("\n");
@@ -137,14 +140,14 @@ public class Board implements IBoard {
 	            	}
 	            	else {
 	            		for (int i=0; i<tailleShip; i++){
-	            			if (tableauNavires[y-i][x]!='.'){
+	            			if (tableauNavires[y-i][x].ship!=null){
 	            				throw new Exception("Il y a déjà un bateau placé sur cet emplacement");
 	            			}
 	            		}
+	            		ship.setPut();
 	            		for (int i=0; i<tailleShip; i++){
-	            			tableauNavires[y-i][x]=ship.getLabel();
-	            		}
-	            		ship.setPut();		            		
+	            			tableauNavires[y-i][x]= new ShipState(ship);
+	            		}	            		
 	            	}
 	            	break;
 
@@ -154,14 +157,14 @@ public class Board implements IBoard {
 	            	}
 	            	else {
 	            		for (int i=0; i<tailleShip; i++){
-	            			if (tableauNavires[y+i][x]!='.'){
+	            			if (tableauNavires[y+i][x].ship!=null){
 	            				throw new Exception("Il y a déjà un bateau placé sur cet emplacement");
 	            			}
 	            		}
+	            		ship.setPut();
 	            		for (int i=0; i<tailleShip; i++){
-	            			tableauNavires[y+i][x]=ship.getLabel();
-	            		}	
-	            		ship.setPut();   	                   		
+	            			tableauNavires[y+i][x]= new ShipState(ship);
+	            		}	   	                   		
 	            	}
 	            	break;
 
@@ -171,14 +174,14 @@ public class Board implements IBoard {
 	            	}
 	            	else {
 	            		for (int i=0; i<tailleShip; i++){
-	            			if (tableauNavires[y][x-i]!='.'){
+	            			if (tableauNavires[y][x-i].ship!=null){
 	            				throw new Exception("Il y a déjà un bateau placé sur cet emplacement");
 	            			}
 	            		}
+	            		ship.setPut();
 	            		for (int i=0; i<tailleShip; i++){
-	            			tableauNavires[y][x-i]=ship.getLabel();
-	            		}	
-	            		ship.setPut();            		
+	            			tableauNavires[y][x-i]= new ShipState(ship);
+	            		}	         		
 	            	}
 	            	break;
 
@@ -188,14 +191,14 @@ public class Board implements IBoard {
 	            	}
 	            	else {
 	            		for (int i=0; i<tailleShip; i++){
-	            			if (tableauNavires[y][x+i]!='.'){
+	            			if (tableauNavires[y][x+i].ship!=null){
 	            				throw new Exception("Il y a déjà un bateau placé sur cet emplacement");
 	            			}
 	            		}
-	            		for (int i=0; i<tailleShip; i++){
-	            			tableauNavires[y][x+i]=ship.getLabel();
-	            		}
 	            		ship.setPut();
+	            		for (int i=0; i<tailleShip; i++){
+	            			tableauNavires[y][x+i]= new ShipState(ship);
+	            		}
 	            	
 	            	}
 	            	break;
@@ -213,17 +216,28 @@ public class Board implements IBoard {
     */
 
     public boolean hasShip(int x, int y) {
-    	if (tableauNavires[y][x]!='.') {
-    		return true;
-    	}
+    	try {
+	    	if (tableauNavires[y][x].ship != null && !tableauNavires[y][x].isSunk()) {
+	    		return true;
+	    	}
 
-    	else {
-    		return false;
-    	}
+	    	else {
+	    		return false;
+	    	}
+	    }
+	    catch (Exception e) {
+	    	System.out.println("indice hors tableau : false par défaut");
+	    	return false;
+	    }
     }
 
     public void setHit(boolean hit, int x, int y) {
-    	tableauFrappes[y][x] = hit;
+    	try {
+    		tableauFrappes[y][x] = hit;
+    	}
+    	catch (Exception e) {
+    		System.out.println("indice hors tableau : frappe non comptabilisée");
+    	}
     }
 
     /* Récupère la frappe à une certaine coordonnée 
@@ -232,7 +246,54 @@ public class Board implements IBoard {
     * @return un booléen indiquant s'il y a eu une frappe ou non
     */
     public Boolean getHit(int x, int y) {
-    	return tableauFrappes[y][x];
+    	try {
+    		return tableauFrappes[y][x];
+    	}
+    	catch (Exception e) {
+    		System.out.println("indice hors tableau : false par défaut");
+    		return false;
+    	}
+    }
+
+    /* Envoie une frappe sur un plateau 
+    * @param x = abscisse
+    * @param y = ordonnée
+    * @return la valeur du Hit */
+    public Hit sendHit(int x, int y) {
+
+    	try {
+	    	if (tableauFrappes[y][x]==null) {
+	    		if (tableauNavires[y][x].ship != null) {
+	    			if (!tableauNavires[y][x].isSunk()){
+	    				tableauNavires[y][x].ship.addStrike();
+	    				tableauNavires[y][x].addStrike();
+	    				tableauFrappes[y][x]=true;
+	    				if (tableauNavires[y][x].isSunk()) {
+	    					System.out.println(tableauNavires[y][x].ship.getLabel()+" : Navire coulé");
+	    					return Hit.fromInt(tableauNavires[y][x].ship.getLength());
+	    				}
+	    				else {
+	    					return Hit.STIKE;
+	    				}
+	    			}
+	    			else {
+	    				return Hit.MISS;
+	    			}
+	    		}
+	    		else {
+	    			return Hit.MISS;
+	    		}
+
+	    	}
+	    	else {
+	    		System.out.println("Coordonée déjà visée : frappe manquée");
+	    		return Hit.MISS;
+	    	}
+	    }
+	    catch (Exception e){
+	    	System.out.println("Coordonées hors tableau");
+	    	return Hit.MISS;
+    	}
     }
 
 }

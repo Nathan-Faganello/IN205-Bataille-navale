@@ -18,3 +18,12 @@
 ## Exercice 4
 
   La modification de Player.java vient assez naturellement. Cependant, je me suis rendu compte à ce moment qu'il me fallait une variable pour savoir si un bateau avai été placé ou non lors de l'appel de putShip(). C'est donc à ce moment que j'ai décidé d'ajouter un attribut put à la classe AbstractShip afin d'avoir systèmatiquement cette information. De plus, la prise en compte du décalage des indices étant déja faite par InputHelper, il m'a fallu remodifier putShip() pour ne pas avoir de problème d'indices.
+  
+## Exercice 5
+
+  Cet exercice a été assez long pour moi. En effet, la modification de tout le code afin que tout colle avec l'ajout de Shipstate et de Boolean a été fastidieux. De plus, dans le Board.print(), l'ordre des tests pour l'affichage du tableau de frappe ne collait pas (true, false puis null) ce qui me faisait une erreur que j'ai mis beaucoup de temps à détecter. 
+  C'est également à ce moment que je me suis rendu compte que les méthodes implémentées précédemment provenant de IBoard pouvait générer des erreurs si les indices entrés étaient hors limite. J'ai donc remédié à ce problème en mettant en place des Exceptions.
+
+  
+ 
+ 

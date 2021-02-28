@@ -40,6 +40,7 @@ public class TestBoard
 		*/
 
 		//Test exercice 4
+		/*
 		Board plateau = new Board("bataille navale");
 		Board plateau2 = new Board("bataille navale");
 
@@ -58,7 +59,35 @@ public class TestBoard
 
 		Player nathan = new Player(plateau, plateau2, vList);
 		nathan.putShips();
+		*/
 
+		//Test exercice 5
+		/*
+		Board plateau = new Board("bataille navale");
+
+		Submarine submarine1 = new Submarine();
+		plateau.putShip(submarine1, 4, 1);
+
+		plateau.setHit(true, 4, 1);
+		plateau.setHit(false, 9,9);
+
+		plateau.print();
+		*/
+
+		//Test exerice 6
+		Board plateau = new Board("bataille navale");
+
+		Submarine submarine1 = new Submarine();
+		plateau.putShip(submarine1, 4, 1);
+
+		plateau.sendHit(4,1);
+		plateau.sendHit(5,1);
+		plateau.sendHit(6,1);
+		plateau.sendHit(2,2);
+		plateau.sendHit(12,0);
+
+
+		plateau.print();
 
     }
 }
