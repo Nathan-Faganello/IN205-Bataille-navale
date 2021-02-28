@@ -1,4 +1,5 @@
 package ensta;
+import ensta.ships.*;
 
 
 public class Board {
