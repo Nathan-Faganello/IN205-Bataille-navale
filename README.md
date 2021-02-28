@@ -24,6 +24,15 @@
   Cet exercice a été assez long pour moi. En effet, la modification de tout le code afin que tout colle avec l'ajout de Shipstate et de Boolean a été fastidieux. De plus, dans le Board.print(), l'ordre des tests pour l'affichage du tableau de frappe ne collait pas (true, false puis null) ce qui me faisait une erreur que j'ai mis beaucoup de temps à détecter. 
   C'est également à ce moment que je me suis rendu compte que les méthodes implémentées précédemment provenant de IBoard pouvait générer des erreurs si les indices entrés étaient hors limite. J'ai donc remédié à ce problème en mettant en place des Exceptions.
 
+##Exercice 6
+
+Pas de difficultés particulières à coder cet exercice.
   
- 
+##Exercice 7
+
+Il m'a fallu un peu de temps pour comprendre tout ce qu'il y avait dans BattleShipAI. Cependant, je n'ai pas créé l'énum Orientation dans AbstractShip mais dans Orientation.java. J'ai donc hésité entre reprendre tout mon code ou bien modifier BattleShipAI afin que cela marche. J'ai préféré modifié BattleShipAI.
+
+Ensuite, mettre en place le TestGame a été un peu fastidieux mais pas très compliqué. Je me suis heurté cependant à un gros problème : de temps en temps, l'IA ne plaçait pas tous les bateaux sur la grille. Je me suis rendu compte alors seulement à cet instant que les conditions aux limites de Board.putShip() dans les cas NORTH et WEST n'était pas exacte ! Je les ai donc modifiées et tout est rentré dans l'ordre.
+
+
  

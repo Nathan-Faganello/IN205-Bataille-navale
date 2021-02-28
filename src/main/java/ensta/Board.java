@@ -135,7 +135,7 @@ public class Board implements IBoard {
         try {
 	        switch(ship.getOrientation()) {
 	            case NORTH:
-	            	if (y-tailleShip <0) {
+	            	if (y+1-tailleShip <0) {
 	            		throw new Exception("Piece hors plateau");
 	            	}
 	            	else {
@@ -169,7 +169,7 @@ public class Board implements IBoard {
 	            	break;
 
 	            case WEST:
-	            	if (x-tailleShip <0) {
+	            	if (x+1-tailleShip <0) {
 	            		throw new Exception("Piece hors plateau");
 	            	}
 	            	else {
