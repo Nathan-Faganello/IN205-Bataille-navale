@@ -1,5 +1,4 @@
 package ensta;
-import ensta.ships.*;
 
 
 public class Board {
@@ -69,8 +68,8 @@ public class Board {
 	public void printTableaux() {
 		int taille = tableauNavires.length;
 		for (int i=0; i<taille; i++) {
-			System.out.print(i+" ");
-			if (i<10 && taille>10){
+			System.out.print(i+1+" ");
+			if (i<9 && taille>9){
 				System.out.print(" ");
 			}
 			for(int j=0; j<taille; j++){
@@ -78,8 +77,8 @@ public class Board {
 				System.out.print(" ");
 			}
 			System.out.print("    ");
-			System.out.print(i+" ");
-			if (i<10 && taille>10){
+			System.out.print(i+1+" ");
+			if (i<9 && taille>9){
 				System.out.print(" ");
 			}
 			for(int j=0; j<taille; j++){
