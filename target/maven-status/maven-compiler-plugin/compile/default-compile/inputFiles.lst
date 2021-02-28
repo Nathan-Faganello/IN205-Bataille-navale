@@ -2,6 +2,8 @@
 /home/faga/Documents/2A/IN205/Projet/bataille-navale/src/main/java/ensta/ships/AbstractShip.java
 /home/faga/Documents/2A/IN205/Projet/bataille-navale/src/main/java/ensta/InputHelper.java
 /home/faga/Documents/2A/IN205/Projet/bataille-navale/src/main/java/ensta/Player.java
+/home/faga/Documents/2A/IN205/Projet/bataille-navale/src/main/java/ensta/Game.java
+/home/faga/Documents/2A/IN205/Projet/bataille-navale/src/main/java/ensta/AIPlayer.java
 /home/faga/Documents/2A/IN205/Projet/bataille-navale/src/main/java/ensta/TestGame.java
 /home/faga/Documents/2A/IN205/Projet/bataille-navale/src/main/java/ensta/ships/Carrier.java
 /home/faga/Documents/2A/IN205/Projet/bataille-navale/src/main/java/ensta/ships/Destroyer.java

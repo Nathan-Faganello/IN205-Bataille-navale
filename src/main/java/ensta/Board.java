@@ -124,6 +124,11 @@ public class Board implements IBoard {
         return tableauNavires.length;
     }
 
+    /* return le nom de la board */
+    public String getName() {
+    	return nom;
+    }
+
     /* Place un bateau dans la grille
     * @param ship = bateau à placer
     * @param x = abscisse (colonne)
@@ -262,12 +267,11 @@ public class Board implements IBoard {
     public Hit sendHit(int x, int y) {
 
     	try {
-	    	if (tableauFrappes[y][x]==null) {
+	    	if (!tableauNavires[y][x].isStruck()) {
 	    		if (tableauNavires[y][x].ship != null) {
 	    			if (!tableauNavires[y][x].isSunk()){
-	    				tableauNavires[y][x].ship.addStrike();
 	    				tableauNavires[y][x].addStrike();
-	    				tableauFrappes[y][x]=true;
+	    				tableauNavires[y][x].ship.addStrike();
 	    				if (tableauNavires[y][x].isSunk()) {
 	    					System.out.println(tableauNavires[y][x].ship.getLabel()+" : Navire coulé");
 	    					return Hit.fromInt(tableauNavires[y][x].ship.getLength());

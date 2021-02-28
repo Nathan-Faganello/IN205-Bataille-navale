@@ -85,6 +85,7 @@ public class TestBoard
 		plateau.sendHit(6,1);
 		plateau.sendHit(2,2);
 		plateau.sendHit(12,0);
+		plateau.sendHit(6,1);
 
 
 		plateau.print();

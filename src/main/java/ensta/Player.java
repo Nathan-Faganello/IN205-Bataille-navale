@@ -104,7 +104,7 @@ public class Player {
         return hit;
     }
 
-    /*
+    
 
     public AbstractShip[] getShips() {
         return ships;
@@ -113,6 +113,5 @@ public class Player {
     public void setShips(AbstractShip[] ships) {
         this.ships = ships;
     }
-*/
 
 }
