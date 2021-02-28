@@ -1,5 +1,7 @@
 # IN205-Bataille-navale
 
+Le pom.xml est paramétré pour compiler le Game.java. Pour exécuter TestBoard et TestGame, il faut modifier directement le main dans le pom.xml .
+
 ## Exerice 1 
 
   Je n'ai pas rencontré de difficulté particulière à la réalisation de ce premier exercice. Toutefois, je me suis rendu compte après coup d'un léger décalage entre les noms des colonnes et les cases du tableau. Je l'ai corrigé lors de l'exercice 3.
