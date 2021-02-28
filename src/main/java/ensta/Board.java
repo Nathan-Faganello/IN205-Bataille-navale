@@ -137,13 +137,14 @@ public class Board implements IBoard {
 	            	}
 	            	else {
 	            		for (int i=0; i<tailleShip; i++){
-	            			if (tableauNavires[y-i-1][x-1]!='.'){
+	            			if (tableauNavires[y-i][x]!='.'){
 	            				throw new Exception("Il y a déjà un bateau placé sur cet emplacement");
 	            			}
 	            		}
 	            		for (int i=0; i<tailleShip; i++){
-	            			tableauNavires[y-i-1][x-1]=ship.getLabel();
-	            		}		            		
+	            			tableauNavires[y-i][x]=ship.getLabel();
+	            		}
+	            		ship.setPut();		            		
 	            	}
 	            	break;
 
@@ -153,13 +154,14 @@ public class Board implements IBoard {
 	            	}
 	            	else {
 	            		for (int i=0; i<tailleShip; i++){
-	            			if (tableauNavires[y+i-1][x-1]!='.'){
+	            			if (tableauNavires[y+i][x]!='.'){
 	            				throw new Exception("Il y a déjà un bateau placé sur cet emplacement");
 	            			}
 	            		}
 	            		for (int i=0; i<tailleShip; i++){
-	            			tableauNavires[y+i-1][x-1]=ship.getLabel();
-	            		}	   	                   		
+	            			tableauNavires[y+i][x]=ship.getLabel();
+	            		}	
+	            		ship.setPut();   	                   		
 	            	}
 	            	break;
 
@@ -169,13 +171,14 @@ public class Board implements IBoard {
 	            	}
 	            	else {
 	            		for (int i=0; i<tailleShip; i++){
-	            			if (tableauNavires[y-1][x-i-1]!='.'){
+	            			if (tableauNavires[y][x-i]!='.'){
 	            				throw new Exception("Il y a déjà un bateau placé sur cet emplacement");
 	            			}
 	            		}
 	            		for (int i=0; i<tailleShip; i++){
-	            			tableauNavires[y-1][x-i-1]=ship.getLabel();
-	            		}	            		
+	            			tableauNavires[y][x-i]=ship.getLabel();
+	            		}	
+	            		ship.setPut();            		
 	            	}
 	            	break;
 
@@ -185,13 +188,14 @@ public class Board implements IBoard {
 	            	}
 	            	else {
 	            		for (int i=0; i<tailleShip; i++){
-	            			if (tableauNavires[y-1][x+i-1]!='.'){
+	            			if (tableauNavires[y][x+i]!='.'){
 	            				throw new Exception("Il y a déjà un bateau placé sur cet emplacement");
 	            			}
 	            		}
 	            		for (int i=0; i<tailleShip; i++){
-	            			tableauNavires[y-1][x+i-1]=ship.getLabel();
+	            			tableauNavires[y][x+i]=ship.getLabel();
 	            		}
+	            		ship.setPut();
 	            	
 	            	}
 	            	break;
